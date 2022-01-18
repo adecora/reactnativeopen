@@ -2,27 +2,25 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import RepositoryList from './RepositoryList';
-import Text from './Text';
 import AppBar from './AppBar';
 import AppBarTab from './AppBarTab';
+import theme from '../theme';
 
 const styles = StyleSheet.create({
     container: {
-        flexGrow: 1,
-        flexShrink: 1,
+        backgroundColor: theme.colors.main,
     },
 });
 
 const Main = () => {
-
     return (
         <View style={styles.container}>
             <AppBar>
-                <AppBarTab onPress={() => console.log('Repositories')}>
-                    Repositories
-                </AppBarTab>
+                <AppBarTab
+                    title="Repositories"
+                    onPress={() => console.log('Repositories')}
+                />
             </AppBar>
-            <Text>Rate Repository Application</Text>
             <RepositoryList />
         </View>
     );

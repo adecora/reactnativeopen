@@ -14,11 +14,11 @@ const styles = StyleSheet.create({
     },
 });
 
-const AppBarTab = ({ children, ...props }) => {
+const AppBarTab = ({ title, ...props }) => {
     return (
         <Pressable style={styles.actionTouchable} {...props}>
             <Text fontSize="subheading" fontWeight="bold" style={styles.actionText}>
-                {children}
+                {title}
             </Text>
         </Pressable>
     );
