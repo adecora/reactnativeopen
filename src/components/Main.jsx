@@ -1,27 +1,33 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { Route, Switch, Redirect } from 'react-router-native';
 
 import RepositoryList from './RepositoryList';
 import AppBar from './AppBar';
-import AppBarTab from './AppBarTab';
+import SignIn from './SignIn';
 import theme from '../theme';
 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: theme.colors.main,
+        flexGrow: 1,
+        flexShrink: 1
     },
 });
 
 const Main = () => {
     return (
         <View style={styles.container}>
-            <AppBar>
-                <AppBarTab
-                    title="Repositories"
-                    onPress={() => console.log('Repositories')}
-                />
-            </AppBar>
-            <RepositoryList />
+            <AppBar />
+            <Switch>
+                <Route path="/" exact>
+                    <RepositoryList />
+                </Route>
+                <Route path="/sign-in" exact>
+                    <SignIn />
+                </Route>
+                <Redirect to="/" />
+            </Switch>
         </View>
     );
 };
