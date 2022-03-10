@@ -1,6 +1,7 @@
-{
-  "expo": {
-    "name": "reactnativeopen",
+import 'dotenv/config';
+
+export default {
+    "name": "react-native-open",
     "slug": "reactnativeopen",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -27,6 +28,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
-  }
-}
+    },
+    "extra": {
+      "env": process.env.ENV,
+      "uri": process.env.APOLLO_URI
+    },
+};
