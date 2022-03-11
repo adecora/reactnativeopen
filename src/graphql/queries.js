@@ -10,6 +10,7 @@ export const GET_REPOSITORIES = gql`
           fullName
           description
           language
+          stargazersCount
           forksCount
           reviewCount
           ratingAverage
