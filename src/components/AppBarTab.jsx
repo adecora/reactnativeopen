@@ -18,11 +18,18 @@ const styles = StyleSheet.create({
 const AppBarTab = ({ title, to, ...props }) => {
     return (
         <Pressable style={styles.actionTouchable} {...props}>
-            <Link to={to}>
-                <Text fontSize="subheading" fontWeight="bold" style={styles.actionText}>
-                    {title}
-                </Text>
-            </Link>
+            { to
+                ? (
+                    <Link to={to}>
+                        <Text fontSize="subheading" fontWeight="bold" style={styles.actionText}>
+                            {title}
+                        </Text>
+                    </Link>)
+                : (
+                    <Text fontSize="subheading" fontWeight="bold" style={styles.actionText}>
+                        {title}
+                    </Text>)
+            }
         </Pressable >
     );
 };
