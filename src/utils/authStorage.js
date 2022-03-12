@@ -12,7 +12,7 @@ class AuthStorage {
       `${this.namespace}:rate-repository-token`
     );
 
-    return accesToken ? JSON.parse(accesToken) : undefined;
+    return accesToken ? accesToken : undefined;
   }
 
   async setAccessToken(accessToken) {
@@ -20,7 +20,7 @@ class AuthStorage {
 
     await AsyncStorage.setItem(
       `${this.namespace}:rate-repository-token`,
-      JSON.stringify(accessToken)
+      accessToken
     );
   }
 
