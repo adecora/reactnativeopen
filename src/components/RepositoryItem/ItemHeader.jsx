@@ -36,14 +36,14 @@ const ItemHeader = ({ image, fullName, description, language }) => {
     return (
         <View style={itemHeaderStyles.container}>
             <View style={itemHeaderStyles.imageContainer}>
-                <Image style={itemHeaderStyles.image}
+                <Image testID="image" style={itemHeaderStyles.image}
                     source={{ uri: image }}
                 />
             </View>
             <View style={itemHeaderStyles.infoContainer}>
-                <Text fontWeight="bold" style={itemHeaderStyles.infoItem}>{fullName}</Text>
-                <Text color="textSecondary" style={itemHeaderStyles.infoItem}>{description}</Text>
-                <Text style={itemHeaderStyles.languageItem}>{language}</Text>
+                <Text testID="fullName" fontWeight="bold" style={itemHeaderStyles.infoItem}>{fullName}</Text>
+                <Text testID="description" color="textSecondary" style={itemHeaderStyles.infoItem}>{description}</Text>
+                <Text testID="language" style={itemHeaderStyles.languageItem}>{language}</Text>
             </View>
         </View >
     );

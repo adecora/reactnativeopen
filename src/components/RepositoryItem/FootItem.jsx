@@ -13,7 +13,7 @@ const footItemStyles = StyleSheet.create({
     },
 });
 
-const FootItem = ({ title, value }) => {
+const FootItem = ({ title, value, ...props }) => {
     const number = value >= 1000
         ? (value / 1000).toFixed(1).slice(-1) === '0'
             ? `${(value / 1000).toFixed(0)} k`
@@ -21,7 +21,7 @@ const FootItem = ({ title, value }) => {
         : `${value}`;
 
     return (
-        <View style={footItemStyles.container}>
+        <View style={footItemStyles.container} {...props} >
             <Text fontWeight="bold" style={footItemStyles.item}>{number}</Text>
             <Text color="textSecondary" style={footItemStyles.item}>{title}</Text>
         </View>

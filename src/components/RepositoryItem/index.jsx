@@ -13,7 +13,7 @@ const repositoryItemStyles = StyleSheet.create({
 
 const RepositoryItem = ({ item }) => {
     return (
-        <View style={repositoryItemStyles.container}>
+        <View testID="repositoryItem" style={repositoryItemStyles.container}>
             <ItemHeader
                 image={item.ownerAvatarUrl}
                 {...item}

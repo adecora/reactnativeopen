@@ -14,10 +14,10 @@ const itemFooterStyles = StyleSheet.create({
 const ItemFooter = ({ item }) => {
     return (
         <View style={itemFooterStyles.container}>
-            <FootItem title="Starts" value={item.stargazersCount} />
-            <FootItem title="Forks" value={item.forksCount} />
-            <FootItem title="Reviews" value={item.reviewCount} />
-            <FootItem title="Rating" value={item.ratingAverage} />
+            <FootItem testID="starts" title="Starts" value={item.stargazersCount} />
+            <FootItem testID="forks" title="Forks" value={item.forksCount} />
+            <FootItem testID="reviews" title="Reviews" value={item.reviewCount} />
+            <FootItem testID="rating" title="Rating" value={item.ratingAverage} />
         </View>
     );
 };

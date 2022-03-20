@@ -12,6 +12,23 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
+// "Pure" code component to use on testing. 
+// assume that the useRepositories hook works as intended (preferably through testing it)
+export const RepositoryListContainer = ({ repositories }) => {
+    const repositoryNodes = repositories
+        ? repositories.edges.map(edge => edge.node)
+        : [];
+
+    return (
+        <FlatList
+            data={repositoryNodes}
+            ItemSeparatorComponent={ItemSeparator}
+            renderItem={RepositoryItem}
+        />
+    );
+};
+    
+
 const RepositoryList = () => {
     const { repositories } = useRepositories();
 
