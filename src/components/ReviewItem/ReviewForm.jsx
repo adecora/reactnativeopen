@@ -8,7 +8,7 @@ import theme from '../../theme';
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        padding: 15,
+        padding: 15
     },
     submit: {
         height: 40,
@@ -20,16 +20,18 @@ const styles = StyleSheet.create({
     },
 });
 
-const SignInForm = ({ onSubmit }) => {
+const ReviewForm = ({ onSubmit }) => {
     return (
         <View style={styles.container}>
-            <FormikTextInput name="username" placeholder="Username" />
-            <FormikTextInput name="password" placeholder="Password" secureTextEntry />
+            <FormikTextInput name="ownerName" placeholder="Repository owner name" />
+            <FormikTextInput name="repositoryName" placeholder="Repository name" />
+            <FormikTextInput name="rating" placeholder="Rating between 0 and 100" keyboardType="numeric" />
+            <FormikTextInput name="text" placeholder="Review" />
             <Pressable onPress={onSubmit}>
-                <Text fontWeight="bold" style={styles.submit}>Sign In</Text>
+                <Text fontWeight="bold" style={styles.submit}>Create a review</Text>
             </Pressable>
         </View>
     );
 };
 
-export default SignInForm;
+export default ReviewForm;
