@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-native';
 import { useQuery, useApolloClient } from '@apollo/client';
 
 import useAuthStorage from '../hooks/useAuthStorage';
@@ -9,6 +10,7 @@ const useUserInfo = () => {
     });
     const authStorage = useAuthStorage();
     const apolloClient = useApolloClient();
+    const navigate = useNavigate();
 
     const me =  data
         ? data.me
@@ -17,6 +19,7 @@ const useUserInfo = () => {
     const signOut = async () => {
         await authStorage.removeAccessToken();
         apolloClient.resetStore();
+        navigate('/', { replace: true });
     };
 
     return [signOut, me];

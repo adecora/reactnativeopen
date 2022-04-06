@@ -1,5 +1,7 @@
 import { gql } from '@apollo/client';
 
+import {  USER_INFO } from './fragments';
+
 export const SIGNIN = gql`
   mutation Login($credentials: AuthenticateInput) {
     authenticate(credentials: $credentials){
@@ -9,11 +11,11 @@ export const SIGNIN = gql`
 `;
 
 export const REVIEW = gql`
+${USER_INFO}
 mutation CreateReview($review: CreateReviewInput) {
   createReview(review: $review) {
     user {
-      id
-      username
+      ...UserInfo
     }
     id
     userId
@@ -21,6 +23,15 @@ mutation CreateReview($review: CreateReviewInput) {
     rating
     createdAt
     text
+  }
+}
+`;
+
+export const SIGNUP = gql`
+${USER_INFO}
+mutation CreateUser($user: CreateUserInput) {
+  createUser(user: $user) {
+    ...UserInfo
   }
 }
 `;
