@@ -43,7 +43,11 @@ const RepositoryList = () => {
         orderBy: 'CREATED_AT',
         orderDirection: 'DESC'
     });
-    const { repositories } = useRepositories(order, searchKeyword);
+    const { repositories, fetchMore } = useRepositories({
+        first: 8,
+        ...order, 
+        searchKeyword,
+    });
     const navigate = useNavigate();
     
     const onChangeOrder = (orderValue) => {
@@ -53,6 +57,10 @@ const RepositoryList = () => {
     const onChangeSearch = (query) => { 
         setKeyword(query);
     };
+
+    const onEndReach = () => {
+        fetchMore();
+      };
 
     // Get the nodes from the edges array
     const repositoryNodes = repositories
@@ -72,6 +80,8 @@ const RepositoryList = () => {
             ListHeaderComponentStyle={styles.header}
             data={repositoryNodes}
             ItemSeparatorComponent={ItemSeparator}
+            onEndReached={onEndReach}
+            onEndReachedThreshold={0.1}
             renderItem={({ item }) => { 
 
                 const repositoryView = () => {

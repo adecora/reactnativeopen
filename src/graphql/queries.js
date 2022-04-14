@@ -1,15 +1,20 @@
 import { gql } from '@apollo/client';
 
-import { REPOSITORY_FIELDS, USER_INFO } from './fragments';
+import { REPOSITORY_FIELDS, USER_INFO, PAGE_INFO } from './fragments';
 
 export const GET_REPOSITORIES = gql`
   ${REPOSITORY_FIELDS}
+  ${PAGE_INFO}
   query Repositories (
+    $first: Int,
+    $after: String,
     $orderBy: AllRepositoriesOrderBy, 
     $orderDirection: OrderDirection,
     $searchKeyword: String
     ){
     repositories (
+      first: $first,
+      after: $after,
       orderBy: $orderBy, 
       orderDirection: $orderDirection,
       searchKeyword: $searchKeyword
@@ -18,6 +23,10 @@ export const GET_REPOSITORIES = gql`
         node {
           ...RepositoryFields
         }
+        cursor
+      }
+      pageInfo {
+        ...PageInfoFields
       }
     }
   }
@@ -35,21 +44,31 @@ export const ME = gql`
 export const GET_REPOSITORY = gql`
 ${REPOSITORY_FIELDS}
 ${USER_INFO}
-query Repository ($id: ID!) {
+${PAGE_INFO}
+query Repository (
+  $first: Int,
+  $after: String,
+  $id: ID!,
+  ) {
   repository (id: $id) {
     ...RepositoryFields
     url
-    reviews {
+    reviews (first: $first, after: $after){
+      totalCount
       edges {
-      node {
-        id
-        createdAt
-        text
-        rating
-        user {
-          ...UserInfo
+        node {
+          id
+          createdAt
+          text
+          rating
+          user {
+            ...UserInfo
         }
       }
+      cursor
+    }
+    pageInfo {
+      ...PageInfoFields
     }
     }
   }
