@@ -8,6 +8,7 @@ import AppBar from './AppBar';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import ReviewItem from './ReviewItem';
+import ReviewList from './ReviewsList';
 import theme from '../theme';
 
 const styles = StyleSheet.create({
@@ -28,6 +29,7 @@ const Main = () => {
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route path="/user/:id" element={<SingleRepository />} />
                 <Route path="/review" element={<ReviewItem />} />
+                <Route path="/review-list" element={<ReviewList />} />
             </Routes>
         </View>
     );

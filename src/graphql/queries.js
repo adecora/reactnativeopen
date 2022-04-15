@@ -34,9 +34,37 @@ export const GET_REPOSITORIES = gql`
 
 export const ME = gql`
   ${USER_INFO}
-  query Me {
+  ${PAGE_INFO}
+  query Me (
+    $first: Int,
+    $after: String,
+    $includeReviews: Boolean = false,
+    ) {
     me {
       ...UserInfo
+      reviews 
+        (first: $first, after: $after)
+        @include(if: $includeReviews){
+          totalCount
+          edges {
+            node {
+              id
+              createdAt
+              text
+              rating
+              repository {
+                fullName
+              }
+              user {
+                ...UserInfo
+            }
+          }
+          cursor
+          }
+          pageInfo {
+            ...PageInfoFields
+          }
+      }
     }
   }
 `;
@@ -66,10 +94,10 @@ query Repository (
         }
       }
       cursor
-    }
-    pageInfo {
-      ...PageInfoFields
-    }
+      }
+      pageInfo {
+        ...PageInfoFields
+      }
     }
   }
 }

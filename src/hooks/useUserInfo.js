@@ -15,7 +15,7 @@ const useUserInfo = () => {
     const me =  data
         ? data.me
         : data;
-
+    
     const signOut = async () => {
         await authStorage.removeAccessToken();
         apolloClient.resetStore();

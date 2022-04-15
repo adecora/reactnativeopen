@@ -11,6 +11,10 @@ const reviewItemStyles = StyleSheet.create({
         marginTop: 10,
         padding: 15,
     },
+    myReviewContainer: {
+        marginTop: 0,
+        marginBottom: 10,
+    },
     ratingContainer: {
         width: 45,
         height: 45,
@@ -31,15 +35,21 @@ const reviewItemStyles = StyleSheet.create({
     },
 });
 
-const ReviewItem = ({ review }) => {
+const ReviewItem = ({ myReview, review }) => {
+    const containerStyle = [
+        reviewItemStyles.container,
+        myReview && reviewItemStyles.myReviewContainer,
+    ];
 
     return (
-        <View style={reviewItemStyles.container}>
+        <View style={containerStyle}>
             <View style={reviewItemStyles.ratingContainer}>
                 <Text color="primary"fontWeight="bold" border>{review.rating}</Text>
             </View>
             <View style={reviewItemStyles.infoContainer}>
-                <Text fontWeight="bold">{review.user.username}</Text>
+                <Text fontWeight="bold">
+                    {myReview? review.repository.fullName : review.user.username}
+                </Text>
                 <Text  color="textSecondary" >{format(new Date(review.createdAt), 'MM.dd.yyyy')}</Text>
                 <Text style={reviewItemStyles.textContainer}>{review.text}</Text>
             </View>

@@ -3,8 +3,8 @@ import { FlatList } from 'react-native';
 import { useParams } from 'react-router-native';
 
 import RepositoryInfo from './RepositoryInfo';
-import useRepository from '../../hooks/useRepositoryView';
 import ReviewItem from './ReviewItem';
+import useRepository from '../../hooks/useRepositoryView';
 
 const SingleRepository = () => {
     let { id } = useParams();
